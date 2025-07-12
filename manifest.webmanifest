@@ -1,0 +1,35 @@
+{
+  "name": "AJAS Services - Professional Consulting & Certification",
+  "short_name": "AJAS Services",
+  "description": "Professional consulting services in Quality Management Systems, Food Safety, Environmental Management, and Occupational Health & Safety",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1D4B73",
+  "theme_color": "#1D4B73",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["business", "productivity", "education"],
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/img/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "assets/img/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+} 

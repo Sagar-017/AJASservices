@@ -1,0 +1,18 @@
+<svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="160" cy="160" r="150" fill="#1D4B73" stroke="#215B8D" stroke-width="8"/>
+<text x="160" y="90" text-anchor="middle" fill="#fff" font-size="18" font-family="Poppins,Arial,sans-serif" font-weight="600">10 Principles</text>
+<text x="160" y="115" text-anchor="middle" fill="#fff" font-size="14" font-family="Poppins,Arial,sans-serif">of Safe Food</text>
+<text x="160" y="135" text-anchor="middle" fill="#fff" font-size="14" font-family="Poppins,Arial,sans-serif">Handling &amp; Hygiene</text>
+<g font-size="12" fill="#D4AF37" font-family="Roboto,Arial,sans-serif">
+<text x="160" y="30" text-anchor="middle">Sanitation</text>
+<text x="265" y="70" text-anchor="middle">Good Storage</text>
+<text x="295" y="160" text-anchor="middle">Food Service</text>
+<text x="265" y="250" text-anchor="middle">Safe Process</text>
+<text x="160" y="295" text-anchor="middle">Training &amp; Development</text>
+<text x="55" y="250" text-anchor="middle">Personal Hygiene</text>
+<text x="25" y="160" text-anchor="middle">Control of Time/Temp</text>
+<text x="55" y="70" text-anchor="middle">Cooking</text>
+<text x="100" y="50" text-anchor="middle">Cleaning</text>
+<text x="220" y="50" text-anchor="middle">Pest Control</text>
+</g>
+</svg> 
