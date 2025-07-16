@@ -1636,3 +1636,127 @@ p {
     height: auto;
   }
 } 
+
+/* ===== LOGIN PAGE STYLES ===== */
+.login-box {
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: var(--clr-surface);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.role-btn, .login-btn {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  background: var(--clr-accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.role-btn:hover,
+.login-btn:hover {
+  background-color: #bfa22f;
+}
+.login-box input[type="text"],
+.login-box input[type="password"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid #ddd;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.login-box label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+  font-size: 0.98rem;
+}
+.login-box .login-error {
+  color: #c00;
+  margin-top: 0.5rem;
+  font-size: 0.98rem;
+} 
+
+/* ===== ADMIN DASHBOARD STYLES ===== */
+.dashboard-box {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: var(--clr-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.tab-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.tab-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--clr-accent);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.tab-button.active {
+  background: var(--clr-primary);
+}
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+.dashboard-box table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.dashboard-box th, .dashboard-box td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  font-size: 1rem;
+}
+.dashboard-box th {
+  background: var(--clr-surface);
+  font-weight: 600;
+}
+@media (max-width: 900px) {
+  .dashboard-box {
+    padding: 1rem;
+  }
+  .dashboard-box table, .dashboard-box th, .dashboard-box td {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.5rem;
+  }
+}
+@media (max-width: 600px) {
+  .dashboard-box {
+    padding: 0.5rem;
+  }
+  .tab-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .dashboard-box table, .dashboard-box th, .dashboard-box td {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.3rem;
+  }
+} 

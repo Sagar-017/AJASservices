@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | AJAS Services</title>
+    <title>Admin Dashboard | AJAS Services</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
@@ -34,7 +34,7 @@
                 <ul class="navbar-menu">
                     <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="objective.html" class="nav-link">Objective</a></li>
-                    <li><a href="about.html" class="nav-link active">About</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
                     <li><a href="services.html" class="nav-link">Services</a></li>
                     <li><a href="contact.html" class="nav-link">Contact Us</a></li>
                     <li><a href="login.html" class="nav-link">Login</a></li>
@@ -43,28 +43,43 @@
         </div>
     </header>
     <main>
-        <div class="services-section">
-          <div class="container about-page">
-            <div class="content-card-box">
-              <h2 class="section-title section-title-left">About</h2>
-              <div class="about-content">
-                <p><strong>Anil Zapate - CEO</strong></p>
-                <p><strong>Education synopsis:</strong><br>Bachelor degree in Microbiology</p>
-                <p><strong>Professional synopsis -</strong></p>
-                <ul>
-                  <li>Anil is dedicated contributor to the Industry, has served the industry through various projects. He is an Approved Auditor for HACCP and BRC Global Standards Food Safety(Food).</li>
-                  <li>He has vast experience of around 18+ years in Inspection/ Auditing/ Consulting .</li>
-                  <li>Worked to achieve FSMS, BRC, HACCP, ISO 22000, FSSC, ISO 9001 certification for more than 100 units, in various product lines like Seafood, Spice Ready to Eat Frozen, retort processing, Pickles & Chutney, Flour, Corn Starch, Dairy, Aseptic Mango pulp, Distilleries etc.</li>
-                  <li>Jointly worked with the Ware housing and Logistic Company for Quality Management and rating methodologies across for the ware housing units.</li>
-                  <li>Jointly worked for Companies on Implementation of Customer specific Requirements on Food Safety like Tesco, Unilever, Kraft foods.</li>
-                  <li>Worked with Laboratories to develop and implement the management system leading to achieve NABL accreditation.</li>
-                  <li>Worked as Food inspector to inspect the export worthy products.</li>
-                  <li>Worked with food catering companies to implement FSMS system.</li>
-                  <li>Hygienic Design and development, to set up an appropriate food safety management plan (e.g., HACCP) to eliminate or control all food safety hazards along the food chain.</li>
-                </ul>
-              </div>
+        <div class="dashboard-box">
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="enquiries">Enquiry List</button>
+                <button class="tab-button" data-tab="audits">Upcoming Audits</button>
             </div>
-          </div>
+            <div class="tab-content active" id="enquiries">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Company</th>
+                            <th>Nature of Business</th>
+                            <th>Nature of Service Request</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Enquiry rows go here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-content" id="audits">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Audit registration rows go here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
     <footer class="footer">
@@ -99,5 +114,23 @@
         </div>
     </footer>
     <script src="assets/js/main.js"></script>
+    <script>
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabContents = document.querySelectorAll('.tab-content');
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabButtons.forEach(b => b.classList.remove('active'));
+          tabContents.forEach(tab => tab.classList.remove('active'));
+          btn.classList.add('active');
+          document.getElementById(btn.dataset.tab).classList.add('active');
+        });
+      });
+    </script>
+    <div id="audit-prospects-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-modal" id="close-prospects-modal">&times;</span>
+            <div id="prospects-list"></div>
+        </div>
+    </div>
 </body>
 </html> 
