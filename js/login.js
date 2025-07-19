@@ -50,9 +50,9 @@ function showAdminLoginForm() {
       const rememberMe = document.getElementById('rememberMe').checked;
       // PocketBase Auth
       try {
-        const module = await import('https://cdn.jsdelivr.net/npm/pocketbase-sdk');
-        const PocketBase = module.default || module;
-        const pb = new PocketBase('http://127.0.0.1:8090');
+        const module = await import('https://esm.sh/pocketbase');
+        const PocketBase = module.default;
+        const pb = new PocketBase('https://paperfree.bigbeetle.net/');
         const authData = await pb.collection('users').authWithPassword(username, password);
         if (rememberMe) {
           const expiry = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;

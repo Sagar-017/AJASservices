@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollTopBtn = document.getElementById('scrollTop');
     
     function toggleScrollTop() {
+        if (!scrollTopBtn) return;
         if (window.pageYOffset > 400) {
             scrollTopBtn.classList.add('show');
         } else {
@@ -67,12 +68,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    scrollTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
-    });
+    }
     
     window.addEventListener('scroll', toggleScrollTop);
     
