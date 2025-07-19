@@ -1,0 +1,103 @@
+Future Update: Scheduler
+========================
+
+Overview & Goals
+----------------
+Develop a standalone, free-to-use scheduler/calendar module within the AJAS admin dashboard. The scheduler will allow Admin and HR to manage activities, assign tasks/meetings to employees, and optionally export or sync events to Google Calendar. Employees will have view-only access. All data is stored in PocketBase.
+
+User Roles & Permissions
+------------------------
+- **Admin**: Full control (create, edit, assign, delete events/tasks)
+- **HR Employee**: Can assign tasks/visits to other employees
+- **Other Employees**: View-only access
+
+Data Model (PocketBase)
+-----------------------
+- **users** (existing):
+    - id (string)
+    - name (string)
+    - email (string)
+    - role (enum: admin, hr, employee)
+    - ...other fields
+- **events** (new):
+    - id (string)
+    - title (string)
+    - description (text)
+    - start_datetime (datetime)
+    - end_datetime (datetime)
+    - assigned_to (relation: users[], for multi-employee assignment)
+    - created_by (relation: users)
+    - type (enum: meeting, task, visit, etc.)
+    - location (string, optional)
+    - status (enum: scheduled, completed, cancelled)
+    - created_at, updated_at (datetime)
+
+UI/UX Requirements
+------------------
+- Integrate a calendar UI (e.g., FullCalendar or Tui Calendar) in the Scheduler section of the dashboard.
+- Admin/HR can add/edit/delete events via forms or modals.
+- Assign employees to events using a dropdown or multi-select (populated from PocketBase users).
+- Employees see only their assigned events (view-only, no edit/delete buttons).
+- Filter/switch views by day/week/month.
+- Optional: Export events as .ics file or provide a public iCal feed URL for subscription in Google Calendar/Outlook.
+- Maintain vintage theme: serif fonts, muted palette, linen-texture background, gold accents.
+
+Integration Points
+------------------
+- **Calendar UI**: Use FullCalendar (https://fullcalendar.io/) or Tui Calendar (https://ui.toast.com/tui-calendar) for event display and interaction.
+- **iCal Export**: Use ics.js (https://github.com/nwcell/ics.js) to generate .ics files for export.
+- **PocketBase API**: Use REST API for CRUD operations on events and users.
+- **Authentication**: Use existing PocketBase login/session logic.
+
+Step-by-Step Implementation Plan
+--------------------------------
+1. **Backend Preparation**
+   - Add 'role' field to users collection if not present.
+   - Create 'events' collection in PocketBase with fields as above.
+   - Set up API rules for role-based access (only admin/hr can create/edit/delete, employees can read assigned events).
+
+2. **Frontend Calendar Integration**
+   - Add FullCalendar/Tui Calendar to Scheduler section.
+   - Fetch events from PocketBase and display in calendar.
+   - Implement event creation/editing UI (forms/modals) for admin/hr only.
+   - Implement event assignment (multi-select employees).
+   - Restrict editing/deleting to admin/hr; employees see only their events.
+
+3. **Export/Sync Feature**
+   - Add button to export visible events as .ics file (ics.js).
+   - (Optional) Implement public iCal feed endpoint in PocketBase for subscription.
+
+4. **UI/UX Polish**
+   - Ensure all UI matches the vintage theme.
+   - Add tooltips, validation, and helpful messages.
+
+5. **Testing & Acceptance**
+   - Test with all roles (admin, hr, employee) for correct permissions.
+   - Test event creation, editing, deletion, assignment, and export.
+   - Test calendar display and filtering.
+
+Acceptance Criteria
+-------------------
+- Admin/HR can create, edit, assign, and delete events.
+- Employees can view only their assigned events.
+- All events are stored and retrieved from PocketBase.
+- Events can be exported as .ics file or subscribed to via iCal feed.
+- UI is responsive and matches the site’s vintage theme.
+- No paid services or dependencies required.
+
+Notes for Future Developers
+---------------------------
+- Use modular JS for calendar logic and API calls.
+- Use PocketBase’s REST API for all data operations.
+- For iCal feed, consider a serverless function or PocketBase view that outputs .ics format.
+- Ensure role-based access is enforced both in UI and backend rules.
+- For large numbers of events/employees, implement pagination or lazy loading.
+
+References
+----------
+- FullCalendar Docs: https://fullcalendar.io/docs
+- Tui Calendar: https://ui.toast.com/tui-calendar
+- ics.js: https://github.com/nwcell/ics.js
+- PocketBase API: https://pocketbase.io/docs/api-records/
+
+This file is intended as a complete technical and product brief for the Scheduler feature. All future work can be started directly from this document. 

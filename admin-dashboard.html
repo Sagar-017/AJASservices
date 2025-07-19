@@ -8,18 +8,7 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
-    <!-- Top Certification Ribbon -->
-    <div class="certification-ribbon">
-        <div class="container">
-            <div class="ribbon-links">
-                <a href="#" class="ribbon-link">ISO 9001:2015</a>
-                <a href="#" class="ribbon-link">ISO 14001:2015</a>
-                <a href="#" class="ribbon-link">ISO 45001:2018</a>
-                <a href="#" class="ribbon-link">HACCP</a>
-                <a href="#" class="ribbon-link">FSSC 22000</a>
-            </div>
-        </div>
-    </div>
+    <!-- Certification ribbon removed for admin dashboard -->
     <header class="header">
         <div class="container">
             <nav class="navbar">
@@ -32,72 +21,64 @@
                     <span></span>
                 </button>
                 <ul class="navbar-menu">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="objective.html" class="nav-link">Objective</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
-                    <li><a href="services.html" class="nav-link">Services</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
-                    <li><a href="login.html" class="nav-link">Login</a></li>
+                    <li><a href="#" class="nav-link" id="navScheduler">Scheduler</a></li>
+                    <li><a href="#" class="nav-link" id="navEnquiry">Enquiry</a></li>
+                    <li><a href="#" class="nav-link" id="logoutBtn">Logout</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     <main>
-        <div class="dashboard-box">
-            <div class="tab-buttons">
-                <button class="tab-button active" data-tab="enquiries">Enquiry List</button>
-                <button class="tab-button" data-tab="audits">Upcoming Audits</button>
+        <section id="schedulerSection" class="dashboard-section" style="display: block;">
+            <div class="dashboard-box">
+                <h2>Scheduler (Coming Soon)</h2>
+                <div class="scheduler-placeholder" style="padding:2rem 0;text-align:center;color:var(--clr-text-h);font-style:italic;">This feature will be available soon.</div>
             </div>
-            <div class="tab-content active" id="enquiries">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Company</th>
-                            <th>Nature of Business</th>
-                            <th>Nature of Service Request</th>
-                            <th>Message</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Enquiry rows go here -->
-                    </tbody>
-                </table>
+        </section>
+        <section id="enquirySection" class="dashboard-section" style="display: none;">
+            <div class="dashboard-box">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="enquiries">Enquiry List</button>
+                    <button class="tab-button" data-tab="audits">Upcoming Audits</button>
+                </div>
+                <div class="tab-content active" id="enquiries">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Company</th>
+                                <th>Nature of Business</th>
+                                <th>Nature of Service Request</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Enquiry rows go here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-content" id="audits">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Audit registration rows go here -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="tab-content" id="audits">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                            <th>Phone Number</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Audit registration rows go here -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        </section>
     </main>
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h4 class="footer-title">Useful Websites</h4>
-                    <div class="footer-links">
-                        <a href="https://www.nbqp.gov.in" target="_blank" rel="noopener" class="footer-link">NBQP-QCI</a>
-                        <a href="https://www.mpeda.gov.in" target="_blank" rel="noopener" class="footer-link">MPEDA</a>
-                        <a href="https://www.fssai.gov.in" target="_blank" rel="noopener" class="footer-link">FSSAI</a>
-                        <a href="https://www.iso.org" target="_blank" rel="noopener" class="footer-link">ISO</a>
-                        <a href="https://www.haccpalliance.org" target="_blank" rel="noopener" class="footer-link">HACCP Alliance</a>
-                        <a href="https://www.fssc22000.com" target="_blank" rel="noopener" class="footer-link">FSSC 22000</a>
-                        <a href="https://www.bsigroup.com" target="_blank" rel="noopener" class="footer-link">BSI Group</a>
-                        <a href="https://www.dnv.com" target="_blank" rel="noopener" class="footer-link">DNV</a>
-                    </div>
-                </div>
                 <div class="footer-section">
                     <h4 class="footer-title">Contact Information</h4>
                     <div class="contact-info">
@@ -114,7 +95,34 @@
         </div>
     </footer>
     <script src="assets/js/main.js"></script>
-    <script>
+    <script type="module">
+      // Section toggling logic
+      const schedulerSection = document.getElementById('schedulerSection');
+      const enquirySection = document.getElementById('enquirySection');
+      const navScheduler = document.getElementById('navScheduler');
+      const navEnquiry = document.getElementById('navEnquiry');
+      const navLinks = [navScheduler, navEnquiry];
+
+      function showSection(section) {
+        schedulerSection.style.display = section === 'scheduler' ? 'block' : 'none';
+        enquirySection.style.display = section === 'enquiry' ? 'block' : 'none';
+        navLinks.forEach(link => link.classList.remove('active'));
+        if (section === 'scheduler') navScheduler.classList.add('active');
+        if (section === 'enquiry') navEnquiry.classList.add('active');
+      }
+
+      navScheduler.addEventListener('click', function(e) {
+        e.preventDefault();
+        showSection('scheduler');
+      });
+      navEnquiry.addEventListener('click', function(e) {
+        e.preventDefault();
+        showSection('enquiry');
+      });
+      // Default view: Scheduler
+      showSection('scheduler');
+
+      // Tab switching logic inside Enquiry section
       const tabButtons = document.querySelectorAll('.tab-button');
       const tabContents = document.querySelectorAll('.tab-content');
       tabButtons.forEach(btn => {
@@ -124,6 +132,16 @@
           btn.classList.add('active');
           document.getElementById(btn.dataset.tab).classList.add('active');
         });
+      });
+
+      // Logout logic (PocketBase session clear + redirect)
+      import PocketBase from 'https://esm.sh/pocketbase';
+      const pb = new PocketBase('https://paperfree.bigbeetle.net');
+      document.getElementById('logoutBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        pb.authStore.clear();
+        localStorage.removeItem('pb_auth');
+        window.location.href = 'login.html';
       });
     </script>
     <div id="audit-prospects-modal" class="modal" style="display:none;">

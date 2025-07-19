@@ -34,13 +34,29 @@ function showAdminLoginForm() {
       <h2 style="margin:0;">Admin Login</h2>
     </div>
     <input type="text" id="username" placeholder="Username" />
-    <input type="password" id="password" placeholder="Password" />
+    <div style="position:relative;width:100%;">
+      <input type="password" id="password" placeholder="Password" style="padding-right:2.5rem;width:100%;" />
+      <span id="togglePassword" style="position:absolute;right:0.75rem;top:50%;transform:translateY(-50%);cursor:pointer;user-select:none;">
+        <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+      </span>
+    </div>
     <label style="margin-top: 0.5rem;">
       <input type="checkbox" id="rememberMe" /> Remember Me
     </label>
     <button class="login-btn" id="loginBtn">Login</button>
   `;
   document.getElementById('backToRoles').addEventListener('click', renderRoleButtons);
+  // Password show/hide logic
+  const passwordInput = document.getElementById('password');
+  const togglePassword = document.getElementById('togglePassword');
+  let passwordVisible = false;
+  togglePassword.addEventListener('click', function() {
+    passwordVisible = !passwordVisible;
+    passwordInput.type = passwordVisible ? 'text' : 'password';
+    document.getElementById('eyeIcon').innerHTML = passwordVisible
+      ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.956 9.956 0 012.042-3.292m3.087-2.727A9.956 9.956 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.973 9.973 0 01-4.293 5.411M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3l18 18"/>'
+      : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>';
+  });
   // Autofill if remembered
   setTimeout(() => {
     const loginBtn = document.getElementById('loginBtn');

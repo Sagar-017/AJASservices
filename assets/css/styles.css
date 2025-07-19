@@ -1687,6 +1687,33 @@ p {
   font-size: 0.98rem;
 } 
 
+/* === Password Eye Icon for Login === */
+.login-box .password-wrapper {
+  position: relative;
+  width: 100%;
+}
+.login-box .password-wrapper input[type="password"],
+.login-box .password-wrapper input[type="text"] {
+  padding-right: 2.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.login-box .password-wrapper #togglePassword {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  user-select: none;
+  color: #888;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.login-box .password-wrapper #togglePassword:hover {
+  color: var(--clr-primary);
+} 
+
 /* ===== ADMIN DASHBOARD STYLES ===== */
 .dashboard-box {
   max-width: 1100px;
