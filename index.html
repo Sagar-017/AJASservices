@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AJAS Services - Professional Consulting & Certification</title>
-    <meta name="description" content="AJAS Services provides professional consulting and certification services across multiple industries including food safety, quality management, and environmental standards.">
-    
+    <meta name="description"
+        content="AJAS Services provides professional consulting and certification services across multiple industries including food safety, quality management, and environmental standards.">
+
     <!-- Preload critical fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet">
+
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+    <script type="module" src="./js/counter.js"></script>
+
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/styles.css">
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    
+
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.webmanifest">
 </head>
+
 <body>
     <!-- Top Certification Ribbon -->
     <div class="certification-ribbon">
@@ -44,15 +49,15 @@
                 <div class="navbar-brand">
                     <h1 class="logo">AJAS Services</h1>
                 </div>
-                
+
                 <button class="navbar-toggle" aria-label="Toggle navigation">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-                
+
                 <ul class="navbar-menu">
-                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="/" class="nav-link active">Home</a></li>
                     <li><a href="objective.html" class="nav-link">Objective</a></li>
                     <li><a href="about.html" class="nav-link">About</a></li>
                     <li><a href="services.html" class="nav-link">Services</a></li>
@@ -71,11 +76,16 @@
                 <div class="welcome-section">
                     <h2 class="section-title">Welcome to AJAS Services!</h2>
                     <div class="welcome-text">
-                        <p>AJAS Services is a professional consulting firm specializing in Quality Management Systems, Food Safety Management Systems, Environmental Management Systems, and Occupational Health & Safety Management Systems. We provide comprehensive consulting services to help organizations achieve and maintain international standards and certifications.</p>
+                        <p>AJAS Services is a professional consulting firm specializing in Quality Management Systems,
+                            Food Safety Management Systems, Environmental Management Systems, and Occupational Health &
+                            Safety Management Systems. We provide comprehensive consulting services to help
+                            organizations achieve and maintain international standards and certifications.</p>
                         <blockquote class="quote">
                             "Quality is not an act, it is a habit." - W. Edwards Deming
                         </blockquote>
-                        <p>Our team of experienced consultants works closely with organizations to understand their unique needs and develop customized solutions that drive continuous improvement and operational excellence.</p>
+                        <p>Our team of experienced consultants works closely with organizations to understand their
+                            unique needs and develop customized solutions that drive continuous improvement and
+                            operational excellence.</p>
                     </div>
                 </div>
                 <div class="news-section">
@@ -84,7 +94,7 @@
                         <div class="stats-icon">👁️</div>
                         <div class="stats-info">
                             <span class="stats-label">Site View Count</span>
-                            <span class="stats-number" data-count="15420">0</span>
+                            <span id="viewcounter" class="stats-number" data-count="0">0</span>
                         </div>
                     </div>
                     <div class="news-header">News & Events</div>
@@ -93,33 +103,39 @@
                             <div class="news-item">
                                 <div class="date-tile">15 Dec</div>
                                 <div class="news-title">ISO 9001:2025 Update Seminar</div>
-                                <div class="news-desc">Join us for an informative session on the latest updates to ISO 9001 standards and their impact on your organization.</div>
+                                <div class="news-desc">Join us for an informative session on the latest updates to ISO
+                                    9001 standards and their impact on your organization.</div>
                             </div>
                             <div class="news-item">
                                 <div class="date-tile">22 Nov</div>
                                 <div class="news-title">Food Safety Awareness Workshop</div>
-                                <div class="news-desc">Comprehensive workshop covering HACCP principles, food safety hazards, and best practices for food businesses.</div>
+                                <div class="news-desc">Comprehensive workshop covering HACCP principles, food safety
+                                    hazards, and best practices for food businesses.</div>
                             </div>
                             <div class="news-item">
                                 <div class="date-tile">08 Nov</div>
                                 <div class="news-title">Environmental Management Training</div>
-                                <div class="news-desc">Learn about ISO 14001 implementation, environmental aspects, and sustainable business practices.</div>
+                                <div class="news-desc">Learn about ISO 14001 implementation, environmental aspects, and
+                                    sustainable business practices.</div>
                             </div>
                             <div class="news-item">
                                 <div class="date-tile">25 Oct</div>
                                 <div class="news-title">Internal Auditor Certification</div>
-                                <div class="news-desc">Professional training program for internal auditors covering audit techniques and management system standards.</div>
+                                <div class="news-desc">Professional training program for internal auditors covering
+                                    audit techniques and management system standards.</div>
                             </div>
                             <!-- Duplicate for looping -->
                             <div class="news-item">
                                 <div class="date-tile">15 Dec</div>
                                 <div class="news-title">ISO 9001:2025 Update Seminar</div>
-                                <div class="news-desc">Join us for an informative session on the latest updates to ISO 9001 standards and their impact on your organization.</div>
+                                <div class="news-desc">Join us for an informative session on the latest updates to ISO
+                                    9001 standards and their impact on your organization.</div>
                             </div>
                             <div class="news-item">
                                 <div class="date-tile">22 Nov</div>
                                 <div class="news-title">Food Safety Awareness Workshop</div>
-                                <div class="news-desc">Comprehensive workshop covering HACCP principles, food safety hazards, and best practices for food businesses.</div>
+                                <div class="news-desc">Comprehensive workshop covering HACCP principles, food safety
+                                    hazards, and best practices for food businesses.</div>
                             </div>
                         </div>
                     </div>
@@ -135,13 +151,20 @@
                     <div class="card objectives-card" data-aos="fade-right">
                         <h2 class="card-title">Our Objectives</h2>
                         <ul class="objectives-list">
-                            <li>To provide professional consulting services in the field of Quality Management Systems, Food Safety Management Systems, Environmental Management Systems, and Occupational Health & Safety Management Systems.</li>
-                            <li>To assist organizations in achieving and maintaining international standards and certifications.</li>
+                            <li>To provide professional consulting services in the field of Quality Management Systems,
+                                Food Safety Management Systems, Environmental Management Systems, and Occupational
+                                Health & Safety Management Systems.</li>
+                            <li>To assist organizations in achieving and maintaining international standards and
+                                certifications.</li>
                             <li>To provide training and awareness programs for organizations and individuals.</li>
-                            <li>To contribute to the continuous improvement of organizational performance and customer satisfaction.</li>
+                            <li>To contribute to the continuous improvement of organizational performance and customer
+                                satisfaction.</li>
                         </ul>
                         <p class="objectives-desc">
-                            Interest is in helping organizations to improve the performance of the quality management programs and projects used to implement their system and organization change, in order to achieve planned benefits from certification. Provide guidance on the hygienic engineering aspects of manufacturing safe and wholesome food.
+                            Interest is in helping organizations to improve the performance of the quality management
+                            programs and projects used to implement their system and organization change, in order to
+                            achieve planned benefits from certification. Provide guidance on the hygienic engineering
+                            aspects of manufacturing safe and wholesome food.
                         </p>
                         <a href="objective.html" class="read-more-btn">Explore</a>
                     </div>
@@ -185,84 +208,85 @@
 
         <!-- Send Enquiry at the bottom, centered -->
         <div class="container">
-          <section class="send-enquiry-bottom">
-            <div class="contact-form-container">
-                <h3 class="form-title">Send Enquiry</h3>
-                <form class="contact-form" id="enquiryForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Name *</label>
-                            <input type="text" id="name" name="name" class="form-input" required>
-                            <span class="error-message" id="nameError"></span>
+            <section class="send-enquiry-bottom">
+                <div class="contact-form-container">
+                    <h3 class="form-title">Send Enquiry</h3>
+                    <form class="contact-form" id="enquiryForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Name *</label>
+                                <input type="text" id="name" name="name" class="form-input" required>
+                                <span class="error-message" id="nameError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Phone *</label>
+                                <input type="tel" id="phone" name="phone" class="form-input" required>
+                                <span class="error-message" id="phoneError"></span>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="phone" class="form-label">Phone *</label>
-                            <input type="tel" id="phone" name="phone" class="form-input" required>
-                            <span class="error-message" id="phoneError"></span>
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                            <span class="error-message" id="emailError"></span>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email *</label>
-                        <input type="email" id="email" name="email" class="form-input" required>
-                        <span class="error-message" id="emailError"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="company" class="form-label">Company</label>
-                        <input type="text" id="company" name="company" class="form-input">
-                    </div>
-                    <div class="form-group">
-                        <label for="nature" class="form-label">Nature of business</label>
-                        <select id="nature" name="nature" class="form-select">
-                            <option value="">--Select--</option>
-                            <option value="fish">Fish and Fish products Processing</option>
-                            <option value="meat">Meat Processing</option>
-                            <option value="snacks">Snacks Industries</option>
-                            <option value="frozen">Fresh Frozen Fruit and Vegetables</option>
-                            <option value="fruit">Fruit pulp Industries</option>
-                            <option value="flour">Flour Industries</option>
-                            <option value="spice">Spice Industries</option>
-                            <option value="packaged">Packaged Drinking Water</option>
-                            <option value="distilleries">Distilleries</option>
-                            <option value="sugar">Sugar Industries</option>
-                            <option value="starch">Starch Industries</option>
-                            <option value="retail">Retail Sector</option>
-                            <option value="hotel">Hotel, Resorts & Restaurants</option>
-                            <option value="agriculture">Agriculture Sector</option>
-                            <option value="warehousing">Warehousing, Logistics and Supply Chain</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="service" class="form-label">Nature of service Request</label>
-                        <select id="service" name="service" class="form-select">
-                            <option value="">--Select--</option>
-                            <option value="haccp">HACCP certification</option>
-                            <option value="brcfood">BRC FOOD certification</option>
-                            <option value="auditing">Internal Auditing</option>
-                            <option value="brcpackaging">BRC Packaging certification</option>
-                            <option value="iso22000">ISO 22000 certification</option>
-                            <option value="fssc">FSSC certification</option>
-                            <option value="iso9001">ISO 9001 certification</option>
-                            <option value="globalgap">Global Gap certification</option>
-                            <option value="lab">Laboratory Support</option>
-                            <option value="cleaning">Cleaning and sanitation solution</option>
-                            <option value="it">IT solutions</option>
-                            <option value="iso17025">ISO 17025</option>
-                            <option value="validation">Validation verification services</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea id="message" name="message" class="form-textarea" rows="4"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        <span>Send Enquiry</span>
-                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
-                        </svg>
-                    </button>
-                </form>
-            </div>
-          </section>
+                        <div class="form-group">
+                            <label for="company" class="form-label">Company</label>
+                            <input type="text" id="company" name="company" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="nature" class="form-label">Nature of business</label>
+                            <select id="nature" name="nature" class="form-select">
+                                <option value="">--Select--</option>
+                                <option value="fish">Fish and Fish products Processing</option>
+                                <option value="meat">Meat Processing</option>
+                                <option value="snacks">Snacks Industries</option>
+                                <option value="frozen">Fresh Frozen Fruit and Vegetables</option>
+                                <option value="fruit">Fruit pulp Industries</option>
+                                <option value="flour">Flour Industries</option>
+                                <option value="spice">Spice Industries</option>
+                                <option value="packaged">Packaged Drinking Water</option>
+                                <option value="distilleries">Distilleries</option>
+                                <option value="sugar">Sugar Industries</option>
+                                <option value="starch">Starch Industries</option>
+                                <option value="retail">Retail Sector</option>
+                                <option value="hotel">Hotel, Resorts & Restaurants</option>
+                                <option value="agriculture">Agriculture Sector</option>
+                                <option value="warehousing">Warehousing, Logistics and Supply Chain</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="service" class="form-label">Nature of service Request</label>
+                            <select id="service" name="service" class="form-select">
+                                <option value="">--Select--</option>
+                                <option value="haccp">HACCP certification</option>
+                                <option value="brcfood">BRC FOOD certification</option>
+                                <option value="auditing">Internal Auditing</option>
+                                <option value="brcpackaging">BRC Packaging certification</option>
+                                <option value="iso22000">ISO 22000 certification</option>
+                                <option value="fssc">FSSC certification</option>
+                                <option value="iso9001">ISO 9001 certification</option>
+                                <option value="globalgap">Global Gap certification</option>
+                                <option value="lab">Laboratory Support</option>
+                                <option value="cleaning">Cleaning and sanitation solution</option>
+                                <option value="it">IT solutions</option>
+                                <option value="iso17025">ISO 17025</option>
+                                <option value="validation">Validation verification services</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-textarea" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <span>Send Enquiry</span>
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </section>
         </div>
     </main>
 
@@ -273,17 +297,21 @@
                 <div class="footer-section">
                     <h4 class="footer-title">Useful Websites</h4>
                     <div class="footer-links">
-                        <a href="https://www.nbqp.gov.in" target="_blank" rel="noopener" class="footer-link">NBQP-QCI</a>
+                        <a href="https://www.nbqp.gov.in" target="_blank" rel="noopener"
+                            class="footer-link">NBQP-QCI</a>
                         <a href="https://www.mpeda.gov.in" target="_blank" rel="noopener" class="footer-link">MPEDA</a>
                         <a href="https://www.fssai.gov.in" target="_blank" rel="noopener" class="footer-link">FSSAI</a>
                         <a href="https://www.iso.org" target="_blank" rel="noopener" class="footer-link">ISO</a>
-                        <a href="https://www.haccpalliance.org" target="_blank" rel="noopener" class="footer-link">HACCP Alliance</a>
-                        <a href="https://www.fssc22000.com" target="_blank" rel="noopener" class="footer-link">FSSC 22000</a>
-                        <a href="https://www.bsigroup.com" target="_blank" rel="noopener" class="footer-link">BSI Group</a>
+                        <a href="https://www.haccpalliance.org" target="_blank" rel="noopener" class="footer-link">HACCP
+                            Alliance</a>
+                        <a href="https://www.fssc22000.com" target="_blank" rel="noopener" class="footer-link">FSSC
+                            22000</a>
+                        <a href="https://www.bsigroup.com" target="_blank" rel="noopener" class="footer-link">BSI
+                            Group</a>
                         <a href="https://www.dnv.com" target="_blank" rel="noopener" class="footer-link">DNV</a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4 class="footer-title">Contact Information</h4>
                     <div class="contact-info">
@@ -294,7 +322,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; 2024 AJAS Services. All rights reserved.</p>
             </div>
@@ -304,7 +332,7 @@
     <!-- Scroll to Top Button -->
     <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 15l-6-6-6 6"/>
+            <path d="M18 15l-6-6-6 6" />
         </svg>
     </button>
 
@@ -312,4 +340,5 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
-</html> 
+
+</html>
