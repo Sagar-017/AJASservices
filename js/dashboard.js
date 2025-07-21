@@ -32,7 +32,7 @@ for (const btn of tabBtns) {
 // Fetch and display enquiries
 // (Inline comment: Fetching enquiries from PocketBase)
 pb.collection("domain_forms")
-  .getFullList({ filter: "type='enquiry'" })
+  .getFullList({ filter: "type='enquiry'", sort: "-created" })
   //   .getList(1, 100, {
   //     sort: "-created",
   //     filter: "type='enquiry'",
@@ -67,7 +67,7 @@ pb.collection("domain_forms")
 // Fetch and display audits
 // (Inline comment: Fetching audits from PocketBase)
 pb.collection("domain_forms")
-  .getFullList({ filter: "type='audit'" })
+  .getFullList({ filter: "type='audit'", sort: "-created" })
   .then((audits) => {
     const tbody = document.querySelector("#audits table tbody");
     if (!tbody) return;
