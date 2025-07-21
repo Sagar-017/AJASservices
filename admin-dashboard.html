@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
+
 <body>
     <!-- Certification ribbon removed for admin dashboard -->
     <header class="header">
@@ -32,7 +34,9 @@
         <section id="schedulerSection" class="dashboard-section" style="display: block;">
             <div class="dashboard-box">
                 <h2>Scheduler (Coming Soon)</h2>
-                <div class="scheduler-placeholder" style="padding:2rem 0;text-align:center;color:var(--clr-text-h);font-style:italic;">This feature will be available soon.</div>
+                <div class="scheduler-placeholder"
+                    style="padding:2rem 0;text-align:center;color:var(--clr-text-h);font-style:italic;">This feature
+                    will be available soon.</div>
             </div>
         </section>
         <section id="enquirySection" class="dashboard-section" style="display: none;">
@@ -96,53 +100,71 @@
     </footer>
     <script src="assets/js/main.js"></script>
     <script type="module">
-      // Section toggling logic
-      const schedulerSection = document.getElementById('schedulerSection');
-      const enquirySection = document.getElementById('enquirySection');
-      const navScheduler = document.getElementById('navScheduler');
-      const navEnquiry = document.getElementById('navEnquiry');
-      const navLinks = [navScheduler, navEnquiry];
+        // Section toggling logic
+        const schedulerSection = document.getElementById('schedulerSection');
+        const enquirySection = document.getElementById('enquirySection');
+        const navScheduler = document.getElementById('navScheduler');
+        const navEnquiry = document.getElementById('navEnquiry');
+        const navLinks = [navScheduler, navEnquiry];
 
-      function showSection(section) {
-        schedulerSection.style.display = section === 'scheduler' ? 'block' : 'none';
-        enquirySection.style.display = section === 'enquiry' ? 'block' : 'none';
-        navLinks.forEach(link => link.classList.remove('active'));
-        if (section === 'scheduler') navScheduler.classList.add('active');
-        if (section === 'enquiry') navEnquiry.classList.add('active');
-      }
+        function showSection(section) {
+            schedulerSection.style.display = section === 'scheduler' ? 'block' : 'none';
+            enquirySection.style.display = section === 'enquiry' ? 'block' : 'none';
+            navLinks.forEach(link => link.classList.remove('active'));
+            if (section === 'scheduler') navScheduler.classList.add('active');
+            if (section === 'enquiry') navEnquiry.classList.add('active');
+        }
 
-      navScheduler.addEventListener('click', function(e) {
-        e.preventDefault();
-        showSection('scheduler');
-      });
-      navEnquiry.addEventListener('click', function(e) {
-        e.preventDefault();
-        showSection('enquiry');
-      });
-      // Default view: Scheduler
-      showSection('scheduler');
-
-      // Tab switching logic inside Enquiry section
-      const tabButtons = document.querySelectorAll('.tab-button');
-      const tabContents = document.querySelectorAll('.tab-content');
-      tabButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          tabButtons.forEach(b => b.classList.remove('active'));
-          tabContents.forEach(tab => tab.classList.remove('active'));
-          btn.classList.add('active');
-          document.getElementById(btn.dataset.tab).classList.add('active');
+        navScheduler.addEventListener('click', function (e) {
+            e.preventDefault();
+            showSection('scheduler');
         });
-      });
+        navEnquiry.addEventListener('click', function (e) {
+            e.preventDefault();
+            showSection('enquiry');
+        });
+        // Default view: Scheduler
+        showSection('scheduler');
 
-      // Logout logic (PocketBase session clear + redirect)
-      import PocketBase from 'https://esm.sh/pocketbase';
-      const pb = new PocketBase('https://paperfree.bigbeetle.net');
-      document.getElementById('logoutBtn').addEventListener('click', function(e) {
-        e.preventDefault();
-        pb.authStore.clear();
-        localStorage.removeItem('pb_auth');
-        window.location.href = 'login.html';
-      });
+        // Tab switching logic inside Enquiry section
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabButtons.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(tab => tab.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Logout logic (PocketBase session clear + redirect)
+        import PocketBase from 'https://esm.sh/pocketbase';
+        const pb = new PocketBase('https://paperfree.bigbeetle.net');
+
+        const savedToken =
+            localStorage.getItem("pb_token") || sessionStorage.getItem("pb_token");
+        const savedModel =
+            localStorage.getItem("pb_model") || sessionStorage.getItem("pb_model");
+
+        if (savedToken && savedModel) {
+            pb.authStore.save(savedToken, JSON.parse(savedModel));
+        }
+        else {
+            window.location.href = "login.html";
+        }
+
+        if (!pb.authStore.isValid) {
+            window.location.href = "login.html";
+        }
+
+
+        document.getElementById('logoutBtn').addEventListener('click', function (e) {
+            e.preventDefault();
+            pb.authStore.clear();
+            localStorage.removeItem('pb_auth');
+            window.location.href = 'login.html';
+        });
     </script>
     <div id="audit-prospects-modal" class="modal" style="display:none;">
         <div class="modal-content">
@@ -150,5 +172,8 @@
             <div id="prospects-list"></div>
         </div>
     </div>
+    <script type="module" src="js/dashboard.js"></script>
+
 </body>
-</html> 
+
+</html>
