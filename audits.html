@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Audit Lectures | AJAS Services</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <div class="navbar-brand">
+          <h1 class="logo">AJAS Services</h1>
+        </div>
+        <button class="navbar-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="navbar-menu">
+          <li><a href="admin-dashboard.html#scheduler" class="nav-link" id="navScheduler">Scheduler</a></li>
+          <li><a href="admin-dashboard.html#enquiry" class="nav-link" id="navEnquiry">Enquiry</a></li>
+          <li><a href="audits.html" class="nav-link active" id="navAudits">Audits</a></li>
+          <li><a href="#" class="nav-link" id="logoutBtn">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="dashboard-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+        <h2 style="margin-bottom:0;">Manage Audit Lectures</h2>
+        <button class="tab-button" id="addAuditBtn" style="margin-bottom:0;">ADD +</button>
+      </div>
+      <div class="tab-buttons" style="margin-top:2rem;">
+        <button class="tab-button active" data-tab="drafts">Drafts</button>
+        <button class="tab-button" data-tab="live">Live</button>
+      </div>
+      <div class="tab-content active" id="drafts">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Audit Date/Time</th>
+              <th>Last Date to Register</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody id="draftsTableBody">
+            <!-- Draft audits go here -->
+          </tbody>
+        </table>
+      </div>
+      <div class="tab-content" id="live">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Audit Date/Time</th>
+              <th>Last Date to Register</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody id="liveTableBody">
+            <!-- Live audits go here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Modal for Add/Edit Audit -->
+    <div id="auditModal" class="modal" style="display:none;">
+      <div class="modal-content vintage-modal" style="max-width:480px;">
+        <span class="close-modal" id="closeAuditModal">&times;</span>
+        <h3 class="modal-title">Add Audit Lecture</h3>
+        <form id="auditForm">
+          <div class="form-group">
+            <label for="auditName">Name</label>
+            <input type="text" id="auditName" name="auditName" required>
+          </div>
+          <div class="form-group">
+            <label for="auditDescription">Description</label>
+            <textarea id="auditDescription" name="auditDescription" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="auditDateTime">Date & Time of Audit</label>
+            <input type="datetime-local" id="auditDateTime" name="auditDateTime" required>
+          </div>
+          <div class="form-group">
+            <label for="lastDate">Last Date of Registration</label>
+            <input type="date" id="lastDate" name="lastDate" required>
+          </div>
+          <div style="display:flex;gap:1rem;justify-content:flex-end;">
+            <button type="button" class="tab-button" id="saveDraftBtn">Save Draft</button>
+            <button type="submit" class="tab-button">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4 class="footer-title">Contact Information</h4>
+          <div class="contact-info">
+            <p><strong>AJAS Services</strong></p>
+            <p>Professional Consulting & Certification</p>
+            <p>Email: info@ajasservices.com</p>
+            <p>Phone: +91-XXXXXXXXXX</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 AJAS Services. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+  <script type="module" src="js/audits.js"></script>
+</body>
+</html> 

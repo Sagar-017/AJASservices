@@ -1510,6 +1510,48 @@ p {
   flex-direction: column;
   gap: 1rem;
 }
+.vintage-modal {
+  background: #fbf7ef; /* soft cream */
+  font-family: Georgia, "Times New Roman", serif;
+  border: 1px solid #e7dcc7;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+.vintage-modal .modal-title {
+  font-family: Georgia, "Times New Roman", serif;
+  color: #5a4a2f;
+  letter-spacing: 0.2px;
+}
+.vintage-modal .form-group label,
+.vintage-modal label {
+  font-family: Georgia, "Times New Roman", serif;
+  color: #6a5940;
+}
+.vintage-modal input[type="text"],
+.vintage-modal input[type="datetime-local"],
+.vintage-modal input[type="date"],
+.vintage-modal textarea {
+  background: #fffdf7;
+  border: 1px solid #e2d6bf;
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+  font-family: Georgia, "Times New Roman", serif;
+}
+.vintage-modal input:focus,
+.vintage-modal textarea:focus {
+  outline: none;
+  border-color: #c8b48f;
+  box-shadow: 0 0 0 3px rgba(200,180,143,0.18);
+}
+.vintage-modal .tab-button,
+.vintage-modal button[type="submit"] {
+  background: #c8a96b; /* warm parchment gold */
+  color: #fff;
+  border-radius: 999px;
+}
+.vintage-modal .tab-button:hover,
+.vintage-modal button[type="submit"]:hover {
+  background: #b8924c;
+}
 .close-modal {
   position: absolute;
   top: 0.7rem;
@@ -1754,6 +1796,23 @@ p {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
+}
+.table-empty-state {
+  background:#fbf7ef;
+  border:1px solid #e7dcc7;
+  color:#6a5940;
+  border-radius:12px;
+  padding:0.85rem 1rem;
+  text-align:center;
+  font-family: Georgia, "Times New Roman", serif;
+}
+.table-empty-state {
+  background: #fbf7ef;
+  border: 1px dashed #e0d6c2;
+  color: #6a5940;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  text-align: center;
 }
 .dashboard-box th, .dashboard-box td {
   padding: 0.75rem 1rem;

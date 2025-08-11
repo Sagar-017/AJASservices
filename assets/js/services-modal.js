@@ -2,7 +2,82 @@ import PocketBase from "https://esm.sh/pocketbase";
 
 const pb = new PocketBase("https://paperfree.bigbeetle.net/");
 
+function formatDate(dateStr) {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString(undefined, { day: '2-digit', month: 'short', year: 'numeric' });
+}
+function formatTime(dateStr) {
+  const d = new Date(dateStr);
+  return d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+}
+
+async function renderAuditLectures() {
+  const container = document.getElementById("auditLecturesContainer");
+  if (!container) return;
+  container.innerHTML = '<div class="news-items-wrapper audit-lectures-items-wrapper"><div class="news-items audit-lectures-items"></div></div>';
+  const itemsDiv = container.querySelector('.news-items');
+  try {
+    const now = new Date();
+    const audits = await pb.collection("audits").getFullList({
+      filter: `status='live' && lastDate >= '${now.toISOString().slice(0,10)}'`,
+      sort: "auditDateTime"
+    });
+    if (!audits.length) {
+      itemsDiv.innerHTML = '<div class="news-item" style="background:#fbf7ef;border:1px solid #e7dcc7;color:#6a5940;border-radius:12px;padding:1rem;">No audits at the moment.</div>';
+      return;
+    }
+    itemsDiv.innerHTML = audits.map(audit => `
+      <div class="news-item audit-lecture-item">
+        <div class="date-tile">${formatDate(audit.auditDateTime)}</div>
+        <div class="news-title">${audit.name}</div>
+        <div class="news-desc">${audit.description}<br><span class="audit-meta">Last Registration: ${formatDate(audit.lastDate)}, ${formatTime(audit.lastDate)}</span></div>
+        <button class="register-btn" data-service="${audit.name}" data-date="${formatDate(audit.auditDateTime)}" data-time="${formatTime(audit.auditDateTime)}" data-lastdate="${formatDate(audit.lastDate)}, ${formatTime(audit.lastDate)}">Register Now</button>
+      </div>
+    `).join('');
+    // Attach modal open logic to new register buttons
+    const registerBtns = itemsDiv.querySelectorAll('.register-btn[data-service]');
+    registerBtns.forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const service = btn.getAttribute("data-service");
+        const date = btn.getAttribute("data-date");
+        const time = btn.getAttribute("data-time");
+        let lastdate = btn.getAttribute("data-lastdate");
+        if (lastdate) lastdate = lastdate.split(",")[0];
+        modalServiceTitle.textContent = "Register for " + service;
+        modalServiceName.value = service;
+        registrationForm.style.display = "";
+        confirmationMessage.style.display = "none";
+        if (date && time && lastdate) {
+          modalDetails.style.display = "";
+          modalDetails.innerHTML =
+            '<div style="margin-top:1.5rem">' +
+            "<strong>Date:</strong> " +
+            date +
+            "<br>" +
+            "<strong>Time:</strong> " +
+            time +
+            "<br>" +
+            "<strong>Last Registration Date:</strong> " +
+            lastdate +
+            "</div>";
+        } else {
+          modalDetails.style.display = "none";
+          modalDetails.innerHTML = "";
+        }
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+        setTimeout(() => {
+          document.getElementById("fullName").focus();
+        }, 100);
+      });
+    });
+  } catch (err) {
+    itemsDiv.innerHTML = '<div class="news-item" style="background:#fbf7ef;border:1px solid #e7dcc7;color:#6a5940;border-radius:12px;padding:1rem;">No audits at the moment.</div>';
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+  renderAuditLectures();
   const modal = document.getElementById("registrationModal");
   const closeModalBtn = document.getElementById("closeModal");
   const registerBtns = document.querySelectorAll(".register-btn[data-service]");
@@ -96,3 +171,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+ 

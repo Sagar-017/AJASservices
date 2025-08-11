@@ -15,6 +15,130 @@ const prospectsModal = document.getElementById("audit-prospects-modal");
 const closeProspectsModal = document.getElementById("close-prospects-modal");
 const prospectsList = document.getElementById("prospects-list");
 
+// --- Audits Management Section ---
+const auditsSection = document.getElementById('auditsSection');
+const addAuditBtn = document.getElementById('addAuditBtn');
+const auditModal = document.getElementById('auditModal');
+const closeAuditModal = document.getElementById('closeAuditModal');
+const auditForm = document.getElementById('auditForm');
+const saveDraftBtn = document.getElementById('saveDraftBtn');
+const draftsTbody = document.getElementById('draftsTableBody');
+const liveTbody = document.getElementById('liveTableBody');
+
+// Tab switching for audits
+const auditsTabButtons = auditsSection ? auditsSection.querySelectorAll('.tab-button[data-tab]') : [];
+const auditsTabContents = auditsSection ? auditsSection.querySelectorAll('.tab-content') : [];
+if (auditsTabButtons.length) {
+  auditsTabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      auditsTabButtons.forEach(b => b.classList.remove('active'));
+      auditsTabContents.forEach(tab => tab.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+}
+
+function openAuditModal() {
+  auditForm.reset();
+  auditModal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeAuditModalFn() {
+  auditModal.style.display = 'none';
+  document.body.style.overflow = '';
+}
+if (addAuditBtn) addAuditBtn.addEventListener('click', openAuditModal);
+if (closeAuditModal) closeAuditModal.addEventListener('click', closeAuditModalFn);
+window.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && auditModal && auditModal.style.display === 'flex') closeAuditModalFn();
+});
+auditModal && auditModal.addEventListener('click', function (e) {
+  if (e.target === auditModal) closeAuditModalFn();
+});
+
+async function renderAudits() {
+  if (!draftsTbody || !liveTbody) return;
+  draftsTbody.innerHTML = '<tr><td colspan="5">Loading...</td></tr>';
+  liveTbody.innerHTML = '<tr><td colspan="5">Loading...</td></tr>';
+  try {
+    const audits = await pb.collection('audits').getFullList({ sort: '-created' });
+    const now = new Date();
+    const draftRows = [];
+    const liveRows = [];
+    for (const audit of audits) {
+      const row = `<tr>
+        <td>${audit.name}</td>
+        <td>${audit.description}</td>
+        <td>${formatDateTime(audit.auditDateTime)}</td>
+        <td>${formatDate(audit.lastDate)}</td>
+        <td><button class="tab-button" data-delete="${audit.id}">Delete</button></td>
+      </tr>`;
+      if (audit.status === 'draft') draftRows.push(row);
+      if (audit.status === 'live' && new Date(audit.lastDate) >= now) liveRows.push(row);
+    }
+    draftsTbody.innerHTML = draftRows.length ? draftRows.join('') : '<tr><td colspan="5">No drafts.</td></tr>';
+    liveTbody.innerHTML = liveRows.length ? liveRows.join('') : '<tr><td colspan="5">No live audits.</td></tr>';
+    // Attach delete logic
+    auditsSection.querySelectorAll('button[data-delete]').forEach(btn => {
+      btn.addEventListener('click', async function() {
+        if (confirm('Delete this audit?')) {
+          await pb.collection('audits').delete(btn.dataset.delete);
+          renderAudits();
+        }
+      });
+    });
+  } catch (err) {
+    draftsTbody.innerHTML = '<tr><td colspan="5">Error loading audits.</td></tr>';
+    liveTbody.innerHTML = '<tr><td colspan="5">Error loading audits.</td></tr>';
+  }
+}
+function formatDateTime(dt) {
+  if (!dt) return '';
+  const d = new Date(dt);
+  return d.toLocaleString(undefined, { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+}
+function formatDate(dt) {
+  if (!dt) return '';
+  const d = new Date(dt);
+  return d.toLocaleDateString(undefined, { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+auditForm && auditForm.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  await saveAudit('live');
+});
+saveDraftBtn && saveDraftBtn.addEventListener('click', async function(e) {
+  e.preventDefault();
+  await saveAudit('draft');
+});
+async function saveAudit(status) {
+  const name = auditForm.auditName.value.trim();
+  const description = auditForm.auditDescription.value.trim();
+  const auditDateTime = auditForm.auditDateTime.value;
+  const lastDate = auditForm.lastDate.value;
+  if (!name || !description || !auditDateTime || !lastDate) {
+    alert('Please fill all fields.');
+    return;
+  }
+  try {
+    await pb.collection('audits').create({
+      name,
+      description,
+      auditDateTime,
+      lastDate,
+      status
+    });
+    closeAuditModalFn();
+    renderAudits();
+  } catch (err) {
+    alert('Error saving audit.');
+  }
+}
+
+// Initial render for audits section
+if (auditsSection) renderAudits();
+
 // Tab switching
 for (const btn of tabBtns) {
   btn.addEventListener("click", () => {

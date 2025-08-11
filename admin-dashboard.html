@@ -25,6 +25,7 @@
                 <ul class="navbar-menu">
                     <li><a href="#" class="nav-link" id="navScheduler">Scheduler</a></li>
                     <li><a href="#" class="nav-link" id="navEnquiry">Enquiry</a></li>
+                    <li><a href="audits.html" class="nav-link" id="navAudits">Audits</a></li>
                     <li><a href="#" class="nav-link" id="logoutBtn">Logout</a></li>
                 </ul>
             </nav>
@@ -123,8 +124,10 @@
             e.preventDefault();
             showSection('enquiry');
         });
-        // Default view: Scheduler
-        showSection('scheduler');
+        // Default view based on URL hash (supports links from audits.html)
+        const initialHash = (window.location.hash || '').toLowerCase();
+        const initialSection = initialHash.includes('enquiry') ? 'enquiry' : 'scheduler';
+        showSection(initialSection);
 
         // Tab switching logic inside Enquiry section
         const tabButtons = document.querySelectorAll('.tab-button');
