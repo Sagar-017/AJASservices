@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scheduler | AJAS Services</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <div class="navbar-brand">
+          <h1 class="logo">AJAS Services</h1>
+        </div>
+        <button class="navbar-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="navbar-menu">
+          <li><a href="scheduler.html" class="nav-link active" id="navScheduler">Scheduler</a></li>
+          <li><a href="enquiry.html" class="nav-link" id="navEnquiry">Enquiry</a></li>
+          <li><a href="audits.html" class="nav-link" id="navAudits">Audits</a></li>
+          <li><a href="#" class="nav-link" id="logoutBtn">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="dashboard-section" style="display:block;">
+      <div class="dashboard-box">
+        <h2>Scheduler (Coming Soon)</h2>
+        <div class="scheduler-placeholder" style="padding:2rem 0;text-align:center;color:var(--clr-text-h);font-style:italic;">
+          This feature will be available soon.
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4 class="footer-title">Contact Information</h4>
+          <div class="contact-info">
+            <p><strong>AJAS Services</strong></p>
+            <p>Professional Consulting & Certification</p>
+            <p>Email: info@ajasservices.com</p>
+            <p>Phone: +91-XXXXXXXXXX</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 AJAS Services. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+  <script type="module">
+    import PocketBase from 'https://esm.sh/pocketbase';
+    const pb = new PocketBase('https://paperfree.bigbeetle.net');
+    const savedToken = localStorage.getItem('pb_token') || sessionStorage.getItem('pb_token');
+    const savedModel = localStorage.getItem('pb_model') || sessionStorage.getItem('pb_model');
+    if (savedToken && savedModel) {
+      pb.authStore.save(savedToken, JSON.parse(savedModel));
+    } else {
+      window.location.href = 'login.html';
+    }
+    if (!pb.authStore.isValid) {
+      window.location.href = 'login.html';
+    }
+    document.getElementById('logoutBtn').addEventListener('click', function (e) {
+      e.preventDefault();
+      pb.authStore.clear();
+      localStorage.removeItem('pb_auth');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>
+

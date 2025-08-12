@@ -83,7 +83,7 @@ function showAdminLoginForm() {
 
   // ✅ Redirect if already authenticated
   if (pb.authStore.isValid) {
-    window.location.href = "admin-dashboard.html";
+    window.location.href = "scheduler.html";
   }
 
   document.getElementById("loginForm").addEventListener("submit", async (e) => {
@@ -106,7 +106,7 @@ function showAdminLoginForm() {
         sessionStorage.setItem("pb_model", JSON.stringify(pb.authStore.model));
       }
 
-      window.location.href = "admin-dashboard.html";
+      window.location.href = "scheduler.html";
     } catch (err) {
       alert("Login failed: " + err.message);
     }

@@ -23,8 +23,8 @@
                     <span></span>
                 </button>
                 <ul class="navbar-menu">
-                    <li><a href="#" class="nav-link" id="navScheduler">Scheduler</a></li>
-                    <li><a href="#" class="nav-link" id="navEnquiry">Enquiry</a></li>
+                    <li><a href="scheduler.html" class="nav-link" id="navScheduler">Scheduler</a></li>
+                    <li><a href="enquiry.html" class="nav-link" id="navEnquiry">Enquiry</a></li>
                     <li><a href="audits.html" class="nav-link" id="navAudits">Audits</a></li>
                     <li><a href="#" class="nav-link" id="logoutBtn">Logout</a></li>
                 </ul>
@@ -32,52 +32,10 @@
         </div>
     </header>
     <main>
-        <section id="schedulerSection" class="dashboard-section" style="display: block;">
+        <section class="dashboard-section">
             <div class="dashboard-box">
-                <h2>Scheduler (Coming Soon)</h2>
-                <div class="scheduler-placeholder"
-                    style="padding:2rem 0;text-align:center;color:var(--clr-text-h);font-style:italic;">This feature
-                    will be available soon.</div>
-            </div>
-        </section>
-        <section id="enquirySection" class="dashboard-section" style="display: none;">
-            <div class="dashboard-box">
-                <div class="tab-buttons">
-                    <button class="tab-button active" data-tab="enquiries">Enquiry List</button>
-                    <button class="tab-button" data-tab="audits">Upcoming Audits</button>
-                </div>
-                <div class="tab-content active" id="enquiries">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Company</th>
-                                <th>Nature of Business</th>
-                                <th>Nature of Service Request</th>
-                                <th>Message</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Enquiry rows go here -->
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tab-content" id="audits">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Full Name</th>
-                                <th>Email</th>
-                                <th>Phone Number</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Audit registration rows go here -->
-                        </tbody>
-                    </table>
-                </div>
+                <h2>Welcome to Admin Dashboard</h2>
+                <p>Use the navigation to manage <strong>Scheduler</strong>, view <strong>Enquiries</strong>, and manage <strong>Audits</strong>.</p>
             </div>
         </section>
     </main>
@@ -101,67 +59,19 @@
     </footer>
     <script src="assets/js/main.js"></script>
     <script type="module">
-        // Section toggling logic
-        const schedulerSection = document.getElementById('schedulerSection');
-        const enquirySection = document.getElementById('enquirySection');
-        const navScheduler = document.getElementById('navScheduler');
-        const navEnquiry = document.getElementById('navEnquiry');
-        const navLinks = [navScheduler, navEnquiry];
-
-        function showSection(section) {
-            schedulerSection.style.display = section === 'scheduler' ? 'block' : 'none';
-            enquirySection.style.display = section === 'enquiry' ? 'block' : 'none';
-            navLinks.forEach(link => link.classList.remove('active'));
-            if (section === 'scheduler') navScheduler.classList.add('active');
-            if (section === 'enquiry') navEnquiry.classList.add('active');
-        }
-
-        navScheduler.addEventListener('click', function (e) {
-            e.preventDefault();
-            showSection('scheduler');
-        });
-        navEnquiry.addEventListener('click', function (e) {
-            e.preventDefault();
-            showSection('enquiry');
-        });
-        // Default view based on URL hash (supports links from audits.html)
-        const initialHash = (window.location.hash || '').toLowerCase();
-        const initialSection = initialHash.includes('enquiry') ? 'enquiry' : 'scheduler';
-        showSection(initialSection);
-
-        // Tab switching logic inside Enquiry section
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                tabButtons.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(tab => tab.classList.remove('active'));
-                btn.classList.add('active');
-                document.getElementById(btn.dataset.tab).classList.add('active');
-            });
-        });
-
-        // Logout logic (PocketBase session clear + redirect)
+        // Logout logic persists here so that Logout is consistent everywhere
         import PocketBase from 'https://esm.sh/pocketbase';
         const pb = new PocketBase('https://paperfree.bigbeetle.net');
-
-        const savedToken =
-            localStorage.getItem("pb_token") || sessionStorage.getItem("pb_token");
-        const savedModel =
-            localStorage.getItem("pb_model") || sessionStorage.getItem("pb_model");
-
+        const savedToken = localStorage.getItem("pb_token") || sessionStorage.getItem("pb_token");
+        const savedModel = localStorage.getItem("pb_model") || sessionStorage.getItem("pb_model");
         if (savedToken && savedModel) {
             pb.authStore.save(savedToken, JSON.parse(savedModel));
+        } else {
+            window.location.href = 'login.html';
         }
-        else {
-            window.location.href = "login.html";
-        }
-
         if (!pb.authStore.isValid) {
-            window.location.href = "login.html";
+            window.location.href = 'login.html';
         }
-
-
         document.getElementById('logoutBtn').addEventListener('click', function (e) {
             e.preventDefault();
             pb.authStore.clear();
