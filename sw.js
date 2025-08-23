@@ -19,6 +19,7 @@ const urlsToCache = [
   '/js/audits.js',
   '/js/dashboard.js',
   '/js/enquiry.js',
+  '/js/scheduler.js',
   '/assets/img/ajas-logo.png',
   '/favicon.ico',
   '/favicon.svg',

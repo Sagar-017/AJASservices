@@ -33,16 +33,154 @@
       </nav>
     </div>
   </header>
+  
   <main>
-    <section class="dashboard-section" style="display:block;">
-      <div class="dashboard-box">
-        <h2>Scheduler (Coming Soon)</h2>
-        <div class="scheduler-placeholder" style="padding:2rem 0;text-align:center;color:var(--clr-text-h);font-style:italic;">
-          This feature will be available soon.
+    <div class="dashboard-box">
+      <!-- Scheduler Header -->
+      <div class="scheduler-header">
+        <div class="scheduler-title">
+          <h2>July 2025</h2>
+          <div class="view-toggle">
+            <button class="view-btn active" data-view="grid">Grid View</button>
+            <button class="view-btn" data-view="calendar">Calendar View</button>
+          </div>
+        </div>
+        <div class="scheduler-actions">
+          <button class="add-event-btn" id="addEventBtn">+ Add Event</button>
+          <button class="export-btn" id="exportBtn">Export .ics</button>
         </div>
       </div>
-    </section>
+
+      <!-- Grid View (Excel-style) -->
+      <div class="scheduler-grid" id="gridView">
+        <div class="grid-container">
+          <div class="grid-header">
+            <div class="day-header">Day</div>
+            <div class="employee-headers" id="employeeHeaders">
+              <!-- Employee headers will be populated by JS -->
+            </div>
+            <div class="day-header">Day</div>
+            <div class="audit-header">Audit</div>
+          </div>
+          <div class="grid-body" id="gridBody">
+            <!-- Grid rows will be populated by JS -->
+          </div>
+        </div>
+        
+        <!-- Legend -->
+        <div class="scheduler-legend">
+          <h4>Task Types</h4>
+          <div class="legend-items">
+            <div class="legend-item">
+              <div class="legend-color internal-audit"></div>
+              <span>Internal audits</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color training"></div>
+              <span>Trainings</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color off"></div>
+              <span>Off</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color customer-visit"></div>
+              <span>Customer visit/Au</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color to-be-confirmed"></div>
+              <span>Visit to be confirm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calendar View -->
+      <div class="scheduler-calendar" id="calendarView" style="display: none;">
+        <div class="calendar-header">
+          <button class="calendar-nav" id="prevMonth">&lt;</button>
+          <h3 id="calendarTitle">July 2025</h3>
+          <button class="calendar-nav" id="nextMonth">&gt;</button>
+        </div>
+        <div class="calendar-grid" id="calendarGrid">
+          <!-- Calendar will be populated by JS -->
+        </div>
+      </div>
+    </div>
   </main>
+
+  <!-- Event Modal -->
+  <div class="event-modal" id="eventModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Add Event</h3>
+        <button class="close-modal" id="closeModal">&times;</button>
+      </div>
+      <form id="eventForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="eventTitle">Company Name *</label>
+            <input type="text" id="eventTitle" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="eventType">Task Type *</label>
+            <select id="eventType" name="type" required>
+              <option value="">Select Type</option>
+              <option value="audit">Audit</option>
+              <option value="internal_audit">Internal Audit</option>
+              <option value="training">Training</option>
+              <option value="customer_visit">Customer Visit</option>
+              <option value="to_be_confirmed">To Be Confirmed</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="startDate">Start Date *</label>
+            <input type="date" id="startDate" name="startDate" required>
+          </div>
+          <div class="form-group">
+            <label for="startTime">Start Time *</label>
+            <input type="time" id="startTime" name="startTime" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="endDate">End Date *</label>
+            <input type="date" id="endDate" name="endDate" required>
+          </div>
+          <div class="form-group">
+            <label for="endTime">End Time *</label>
+            <input type="time" id="endTime" name="endTime" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="assignedTo">Assign Employees *</label>
+          <select id="assignedTo" name="assignedTo" multiple required>
+            <!-- Employee options will be populated by JS -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="eventDescription">Description</label>
+          <textarea id="eventDescription" name="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="eventStatus">Status *</label>
+          <select id="eventStatus" name="status" required>
+            <option value="scheduled">Scheduled</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-danger" id="deleteEventBtn" style="display: none;">Delete Event</button>
+          <button type="button" class="btn-secondary" id="cancelEvent">Cancel</button>
+          <button type="submit" class="btn-primary">Save Event</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
@@ -61,27 +199,9 @@
       </div>
     </div>
   </footer>
+  
   <script src="assets/js/main.js"></script>
-  <script type="module">
-    import PocketBase from 'https://esm.sh/pocketbase';
-    const pb = new PocketBase('https://paperfree.bigbeetle.net');
-    const savedToken = localStorage.getItem('pb_token') || sessionStorage.getItem('pb_token');
-    const savedModel = localStorage.getItem('pb_model') || sessionStorage.getItem('pb_model');
-    if (savedToken && savedModel) {
-      pb.authStore.save(savedToken, JSON.parse(savedModel));
-    } else {
-      window.location.href = 'login.html';
-    }
-    if (!pb.authStore.isValid) {
-      window.location.href = 'login.html';
-    }
-    document.getElementById('logoutBtn').addEventListener('click', function (e) {
-      e.preventDefault();
-      pb.authStore.clear();
-      localStorage.removeItem('pb_auth');
-      window.location.href = 'login.html';
-    });
-  </script>
+  <script type="module" src="js/scheduler.js"></script>
 </body>
 </html>
 
