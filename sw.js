@@ -1,7 +1,7 @@
 // ===== SERVICE WORKER FOR AJAS SERVICES =====
 // Basic PWA functionality with caching
 
-const CACHE_NAME = 'ajas-services-v3';
+const CACHE_NAME = 'ajas-services-v4';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -19,6 +19,8 @@ const urlsToCache = [
   '/js/audits.js',
   '/js/dashboard.js',
   '/js/enquiry.js',
+  '/assets/img/ajas-logo.png',
+  '/favicon.ico',
   '/favicon.svg',
   'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap',
   'https://unpkg.com/aos@2.3.1/dist/aos.css',
